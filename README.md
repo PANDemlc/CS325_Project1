@@ -1,8 +1,8 @@
-### Basic python article web scraper.
+# Basic python article web scraper.
 
 This program uses BeautifulSoup to find the title and main text of ABCNews sports articles for analysis and utilization in other projects.
 
-# Instructions
+## Instructions
 * In a compatible terminal environment for executing Conda commands, initialize the conda environment with the **requirements.yml** file.
 ~~~bash
 conda create --name env_name --file requirements.yaml

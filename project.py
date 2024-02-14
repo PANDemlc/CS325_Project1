@@ -7,15 +7,15 @@ def get_text(url):
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        title = soup.find("div", attrs={"data-testid": "prism-headline"})
-        body = soup.find("div", attrs={"data-testid": "prism-article-body"})
+        title_ = soup.find("span", class_="gtOS FbbU tUtY vOCw EQwF yCuf eEak Qmvg nyTI SRXV vzLa jgBf WXDa CiUC kqbG zrdE txGf ygKV Bbez UOtx CVfp xijV soGR XgdC sEIl daWq")
+        body_ = soup.find("div", attrs={"data-testid": "prism-article-body"})
 
-        if title and body:
-            title = title.get_text(separator="\n")
-            body = body.get_text(separator="\n")
+        if title_ and body_:
+            title = title_.get_text(separator="\n")
+            body = body_.get_text(separator="\n")
             return title, body
-        elif body:
-            body = body.get_text(separator="\n")
+        elif body_:
+            body = body_.get_text(separator="\n")
             title = "No Title"
             return title, body
         else:
