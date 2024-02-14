@@ -5,10 +5,10 @@ This program uses BeautifulSoup to find the title and main text of ABCNews sport
 ## Instructions
 * In a compatible terminal environment for executing Conda commands, initialize the conda environment with the **requirements.yml** file.
 ~~~bash
-conda create --name env_name --file requirements.yaml
+conda create --name env_name --file requirements.yml
 ~~~
 * Create a text file named **'input.txt'** within the same folder as **project.py** and fill it with ABCNews Sports articles URLs.
-  * <span style="font-size: smaller; color: grey;">One URL per line.</span>
+  * <span style="font-size: small; color: grey;">One URL per line.</span>
 * Run the Python program **project.py**
 ~~~bash
 python3 project.py
