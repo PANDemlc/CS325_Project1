@@ -1,6 +1,6 @@
 # Basic python article web scraper.
 
-This program uses BeautifulSoup to find the title and main text of ABCNews sports articles. Then the main body of the article is sent to chatGPT and summarized in 50 words or less using the **OpenAI API**. Finally, a file with the name of the original article is created in **'Data > processed'** that contains the AI response.
+This program uses BeautifulSoup to find the title and main text of ABCNews sports articles. Then the main body of the article is sent to ChatGPT and summarized in 50 words or less using the **OpenAI API**. Finally, a file with the name of the original article is created in **'Data > processed'** that contains the AI response.
 
 ## Setup Instructions
 * In a compatible terminal environment for executing Conda commands, initialize the conda environment with the **requirements.yml** file.
@@ -13,6 +13,8 @@ conda create --name env_name --file requirements.yml
 
 * Within the **module_3** folder, decrypt the **.env** file containing the OpenAI API key using the password sent over email.
 ~~~bash
+cd module_3
+
 openssl enc -d -aes-256-cbc -in .env.enc -out .env
 ~~~
 * You will be prompted to enter the decryption password to access the decrypted **.env** file.
