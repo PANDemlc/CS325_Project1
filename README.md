@@ -2,6 +2,15 @@
 
 This program uses BeautifulSoup to find the title and main text of ABCNews sports articles. Then the main body of the article is sent to ChatGPT and summarized in 50 words or less using the **OpenAI API**. Finally, a file with the name of the original article is created in **'Data > processed'** that contains the AI response.
 
+## Requirements
+
+- Python 3.9
+- BeautifulSoup library (`pip install beautifulsoup4`)
+- Requests library (`pip install requests`)
+- OpenAI library (`pip install openai`)
+- Pytest library (`pip install pytest`)
+- Validators library (`pip install validators pytest`)
+
 ## Setup Instructions
 * In a compatible terminal environment for executing Conda commands, initialize the conda environment with the **requirements.yml** file.
 ~~~bash
