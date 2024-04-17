@@ -81,3 +81,11 @@ def get_ai_response(text):
     )
     return completion.choices[0].message.content
 ~~~
+
+## Unit testing
+To run all unit tests...
+* Navigate to the folder with all test_*.py files
+* Enter the following in bash
+~~~bash
+pytest
+~~~
