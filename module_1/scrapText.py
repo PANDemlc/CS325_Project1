@@ -9,6 +9,8 @@ import requests
 from bs4 import BeautifulSoup
 from module_3.chatgptAPI import get_ai_response
 
+enableAPI = False
+
 # Takes in a url of an ABC sports news article
 # Outputs the title and body as a pair of strings
 def get_text(url):
@@ -23,12 +25,22 @@ def get_text(url):
         if title_ and body_:
             title = title_.get_text(separator="\n")
             body = body_.get_text(separator="\n")
-            ai_response = get_ai_response(body)
+
+            ai_response = body
+            # Set global bool 'enableAPI' true or false to enable/disable API calls
+            if (enableAPI):
+                ai_response = get_ai_response(body)
+            
             return title, ai_response
         elif body_:
             body = body_.get_text(separator="\n")
             title = "No Title"
-            ai_response = get_ai_response(body)
+
+            ai_response = body
+            # Set global bool 'enableAPI' true or false to enable/disable API calls
+            if (enableAPI):
+                ai_response = get_ai_response(body)
+            
             return title, ai_response
         else:
             return "No text found in URL", ""
