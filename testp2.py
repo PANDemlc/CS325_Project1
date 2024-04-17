@@ -75,3 +75,41 @@ def test_make_file_writes_title_and_body_to_file():
     os.remove(file_path)
 
 
+def test_make_file_existing_name():
+    # Define the test title and body
+    title = "Existing Article"
+    body = "This is the body of the existing article."
+
+    # Define the folder and file paths
+    processed_folder = os.path.join("Data", "processed")
+    os.makedirs(processed_folder, exist_ok=True)
+
+    # Create a file with the same title to simulate an existing file
+    existing_file_path = os.path.join(processed_folder, f"{title}.txt")
+    with open(existing_file_path, "w") as file:
+        file.write("This file already exists.")
+
+    # Call the make_file function
+    make_file(title, body)
+
+    # Define a suffix variable and construct the expected filename
+    suffix = 1
+    expected_file_path = os.path.join(processed_folder, f"{title}-{suffix}.txt")
+
+    # Increment suffix until the expected file is found
+    while not os.path.exists(expected_file_path):
+        suffix += 1
+        expected_file_path = os.path.join(processed_folder, f"{title}-{suffix}.txt")
+
+    # Read the content of the new file
+    with open(expected_file_path, "r") as file:
+        file_content = file.read()
+
+    # Expected content is the combination of title and body
+    expected_content = f"{title}\n{body}"
+    assert file_content == expected_content
+
+    # Cleanup: Remove the files created during the test
+    os.remove(existing_file_path)
+    os.remove(expected_file_path)
+
