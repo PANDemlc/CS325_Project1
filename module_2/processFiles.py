@@ -22,6 +22,8 @@ def open_file(name):
     # Error if the file path or name is not found
     except FileNotFoundError:
         print(f"Input file '{name}' doesn't exist.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 # Takes in the title of the article and all of the body text
 # Creates a new file that containes the scrapped article
