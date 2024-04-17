@@ -15,34 +15,27 @@ enableAPI = False
 # Outputs the title and body as a pair of strings
 def get_text(url):
     try:
+        # Fetch the HTML content from the URL
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        # Using the structure of sports articles from ABC news, finds the title and body text of the article
-        title_ = soup.find("div", attrs={"data-testid": "prism-headline"})
-        body_ = soup.find("div", attrs={"data-testid": "prism-article-body"})
+        # Locate the title and body elements in the HTML content
+        title_element = soup.find("div", attrs={"data-testid": "prism-headline"})
+        body_element = soup.find("div", attrs={"data-testid": "prism-article-body"})
 
-        if title_ and body_:
-            title = title_.get_text(separator="\n")
-            body = body_.get_text(separator="\n")
+        # Determine the title and body based on the found elements
+        title = title_element.get_text(separator="\n") if title_element else "No Title"
+        body = body_element.get_text(separator="\n") if body_element else ""
 
-            ai_response = body
-            # Set global bool 'enableAPI' true or false to enable/disable API calls
-            if (enableAPI):
-                ai_response = get_ai_response(body)
-            
-            return title, ai_response
-        elif body_:
-            body = body_.get_text(separator="\n")
-            title = "No Title"
-
-            ai_response = body
-            # Set global bool 'enableAPI' true or false to enable/disable API calls
-            if (enableAPI):
-                ai_response = get_ai_response(body)
-            
-            return title, ai_response
+        # If enableAPI is True, process the body through AI
+        if enableAPI:
+            ai_response = get_ai_response(body)
         else:
-            return "No text found in URL", ""
+            ai_response = body
+
+        # Return the title and AI-processed body
+        return title, ai_response
+
     except Exception as e:
+        # Handle exceptions by returning an error message and an empty string for the body
         return f"Error: {e}", ""
