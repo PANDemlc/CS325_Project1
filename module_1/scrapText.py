@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 from module_3.chatgptAPI import get_ai_response
 
-enableAPI = False
+enableAPI = True
 
 # Takes in a url of an ABC sports news article
 # Outputs the title and body as a pair of strings
@@ -30,11 +30,10 @@ def get_text(url):
         # If enableAPI is True, process the body through AI
         if enableAPI:
             ai_response = get_ai_response(body)
+            return title, ai_response
         else:
-            ai_response = body
+            return title, body
 
-        # Return the title and AI-processed body
-        return title, ai_response
 
     except Exception as e:
         # Handle exceptions by returning an error message and an empty string for the body
