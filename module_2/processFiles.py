@@ -6,6 +6,7 @@
 # Code is more maintainable and easy to understand with compartmentalization of functions into specific responsibilities
 
 import os
+import validators
 from module_1.scrapText import get_text
 
 # Take in the name and path of the input.txt file containing all of the links - 'name' variable
@@ -15,6 +16,11 @@ def open_file(name):
         with open(name, 'r') as file:
             for line in file:
                 url = line.strip()
+
+                if not validators.url(url):
+                    print(f"Invalid URL: {url}")
+                    continue
+
                 # Call function to scrap text of title and body text of article
                 title, body = get_text(url)
                 # Call function that creats a file for the scrapped text
@@ -22,6 +28,8 @@ def open_file(name):
     # Error if the file path or name is not found
     except FileNotFoundError:
         print(f"Input file '{name}' doesn't exist.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 # Takes in the title of the article and all of the body text
 # Creates a new file that containes the scrapped article
