@@ -1,6 +1,6 @@
 # Basic python article web scraper.
 
-This program uses BeautifulSoup to find the title and main text of ABCNews sports articles. Then the main body of the article is sent to ChatGPT and summarized in 50 words or less using the **OpenAI API**. Finally, a file with the name of the original article is created in **'Data > processed'** that contains the AI response.
+This program uses BeautifulSoup to find the title and main text of ABCNews sports articles. Then the main body of the article is sent to ChatGPT and summarized in 50 words or less using the **OpenAI API**. Next, a file with the name of the original article is created in **'Data > processed'** that contains the AI response. Finally, a website HTML file is created with the output summaries and titles of each article.
 
 ## Requirements
 
